@@ -6,6 +6,13 @@ const recordStatus = {
   workAtHome: "Work from home in Mainland China"
 };
 
+const regionStatus = {
+  atShanghai:
+    "Either I or my resident(s) never left Shanghai during the last 14 days.",
+  noInShanghai:
+    "Either I or my resident(s) never leaves the permanent residence out of Shanghai during the last 14 days."
+};
+
 const transferCurrentDate = () => {
   const currentDate = moment();
   const date = currentDate.format("M/DD/YYYY");
@@ -22,7 +29,7 @@ const transferCurrentDate = () => {
   };
 };
 
-const login = async juid => {
+const login = async (juid, inShanghai = true) => {
   const loginRes = await axios({
     method: "post",
     url: `http://65.183.25.201/Login?guid=${juid}`
@@ -33,6 +40,7 @@ const login = async juid => {
     method: "get",
     url: `http://65.183.25.201/GetClockinInfo?guid=${userInfo.guid}&email=${userInfo.email}`
   });
+  console.log(checkInRes.data);
   const parameters = transferCurrentDate();
   const recordRes = await axios({
     method: "post",
@@ -45,8 +53,9 @@ const login = async juid => {
       other_desc: "",
       clockin_time: parameters.date,
       address: "",
-      resident_status:
-        "Either I or my resident(s) never left Shanghai during the last 14 days."
+      resident_status: inShanghai
+        ? regionStatus.atShanghai
+        : regionStatus.noInShanghai
     }
   });
   console.log(recordRes.data);
