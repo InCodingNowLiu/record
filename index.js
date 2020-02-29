@@ -6,6 +6,7 @@ const recordList = async () => {
   await login("yding048");
   await login("pchen189");
   await login("rshi037", false);
+  await login("ewang309");
 };
 
 const scheduleCronstyle = () => {
