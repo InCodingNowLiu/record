@@ -1,0 +1,9 @@
+version: '3'
+services:
+    record:
+        build: 
+          context: .
+        restart: always
+        environment:
+          TZ: Asia/Shanghai
+        image: record
