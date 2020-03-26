@@ -61,10 +61,10 @@ const login = async (juid, inShanghai = true) => {
     }
   });
   console.log(recordRes.data);
-  if (juid === "jliu396") {
-    await addRecordToWork(parameters.date);
-    await saveHealthInfo(parameters.date);
-  }
+  // if (juid === "jliu396") {
+  //   await addRecordToWork(parameters.date);
+  //   await saveHealthInfo(parameters.date);
+  // }
 };
 
 //http://65.183.25.201/GetHealthInfoRegistration?guid=jliu396&email=jiqing.j.liu@pwc.com

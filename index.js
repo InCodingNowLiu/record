@@ -16,6 +16,6 @@ const scheduleCronstyle = () => {
   });
 };
 
-scheduleCronstyle();
-
+// scheduleCronstyle();
+recordList();
 // login("jliu396");
