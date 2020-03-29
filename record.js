@@ -61,10 +61,14 @@ const login = async (juid, inShanghai = true) => {
     }
   });
   console.log(recordRes.data);
-  // if (juid === "jliu396") {
-  //   await addRecordToWork(parameters.date);
-  //   await saveHealthInfo(parameters.date);
-  // }
+  if (juid === "jliu396") {
+    try {
+      await addRecordToWork(parameters.date);
+      await saveHealthInfo(parameters.date);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 //http://65.183.25.201/GetHealthInfoRegistration?guid=jliu396&email=jiqing.j.liu@pwc.com
@@ -83,7 +87,7 @@ const addRecordToWork = async date => {
     data: {
       GUID: "jliu396",
       email: "jiqing.j.liu@pwc.com",
-      seat_info_id: "42",
+      seat_info_id: "30",
       submit_time: date
     }
   });
@@ -127,7 +131,7 @@ const saveHealthInfo = async date => {
     url: "http://65.183.25.201/SaveHealthInfoRegistration",
     data: {
       GUID: "jliu396",
-      room: "42",
+      room: "30",
       email: "jiqing.j.liu@pwc.com",
       office_time: date,
       chinese_name: "刘吉庆 ",
