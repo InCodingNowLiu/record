@@ -80,15 +80,14 @@ seat_info_id: "42"
 submit_time: "03/15/2020"
 */
 const addRecordToWork = async date => {
-  console.log(`date: `, date);
   const bookSeatResult = await axios({
     method: "POST",
     url: "http://65.183.25.201/BookSeat",
     data: {
       GUID: "jliu396",
       email: "jiqing.j.liu@pwc.com",
-      seat_info_id: "30",
-      submit_time: date
+      seat_info_id: "32",
+      submit_time: bookDate
     }
   });
   console.log(`addRecordToWork: `, bookSeatResult.data);
@@ -125,15 +124,18 @@ QRCode_info: ""
 SMS_info: "尊敬的176****1394客户，您好！根据您的授权查询，您于近14日内曾到访：上海。此为公益服务，查询结果仅供参考，不作为最终判定依据。[中国电信]"
 
 */
+const bookDate = moment()
+  .add(3, "days")
+  .format("MM/DD/YYYY");
 const saveHealthInfo = async date => {
   const healthInfo = await axios({
     method: "POST",
     url: "http://65.183.25.201/SaveHealthInfoRegistration",
     data: {
       GUID: "jliu396",
-      room: "30",
+      room: "32",
       email: "jiqing.j.liu@pwc.com",
-      office_time: date,
+      office_time: bookDate,
       chinese_name: "刘吉庆 ",
       mobile_number: "17602131394",
       document_type: "身份证 ID Card",
